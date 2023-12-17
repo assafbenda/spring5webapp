@@ -10,27 +10,35 @@ public class Publisher {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long id;
     private String name;
-    private String address;
+    private String addressLine1;
+    private String city;
+    private String state;
+    private String zip;
 
-    @ManyToMany(mappedBy = "publishers")
-    private Set<Book> books=new HashSet<>();
+    @OneToMany
+    @JoinColumn(name="publisher_id")
+    private Set<Book> books = new HashSet<>();
+
 
     public Publisher() {
     }
 
-    public Publisher(String name, String publisher) {
+    public Publisher(String name, String addressLine1, String city, String state, String zip) {
         this.name = name;
-        this.address = publisher;
+        this.addressLine1 = addressLine1;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getName() {
@@ -41,15 +49,41 @@ public class Publisher {
         this.name = name;
     }
 
-    public String getPublisher() {
-        return address;
+    public String getAddressLine1() {
+        return addressLine1;
     }
 
-    public void setPublisher(String publisher) {
-        this.address = publisher;
+    public void setAddressLine1(String addressLine1) {
+        this.addressLine1 = addressLine1;
     }
 
-    public Set<Book> getBook() { return books;}
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    public Set<Book> getBooks() {
+        return books;
+    }
 
     public void setBooks(Set<Book> books) {
         this.books = books;
@@ -58,10 +92,12 @@ public class Publisher {
     @Override
     public String toString() {
         return "Publisher{" +
-                "Id=" + Id +
+                "id=" + id +
                 ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", books=" + books +
+                ", addressLine1='" + addressLine1 + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", zip='" + zip +
                 '}';
     }
 
@@ -72,13 +108,12 @@ public class Publisher {
 
         Publisher publisher = (Publisher) o;
 
-        return Objects.equals(Id, publisher.Id);
+        return Objects.equals(id, publisher.id);
     }
 
     @Override
     public int hashCode() {
-        return Id != null ? Id.hashCode() : 0;
+        return id != null ? id.hashCode() : 0;
     }
 }
-
 
