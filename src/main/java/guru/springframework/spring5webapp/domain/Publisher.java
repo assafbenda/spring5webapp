@@ -25,6 +25,14 @@ public class Publisher {
     public Publisher() {
     }
 
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
+    }
+
     public Publisher(String name, String addressLine1, String city, String state, String zip) {
         this.name = name;
         this.addressLine1 = addressLine1;
@@ -81,14 +89,6 @@ public class Publisher {
         this.zip = zip;
     }
 
-    public Set<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(Set<Book> books) {
-        this.books = books;
-    }
-
     @Override
     public String toString() {
         return "Publisher{" +
@@ -97,7 +97,7 @@ public class Publisher {
                 ", addressLine1='" + addressLine1 + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
-                ", zip='" + zip +
+                ", zip='" + zip +'\''+
                 '}';
     }
 
